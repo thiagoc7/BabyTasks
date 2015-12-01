@@ -1,34 +1,63 @@
 import React, {
     Component,
+    PropTypes,
     StyleSheet,
     Text,
-    View,
+    ScrollView,
 } from 'react-native';
+
+import { connect } from 'react-redux/native'
+
+import DateLabel from './../components/DateLabel'
+import DateSelector from './../components/DateSelector'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
+    marginTop: 40
+  },
+
+  contentContainer: {
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'transparent',
+    alignItems: 'center'
   }
 });
 
-export default class Home extends Component {
+class Home extends Component {
 
   render() {
+    const { date, dispatch } = this.props;
     return (
-        <View style={styles.container}>
-          <Text>Home</Text>
-        </View>
+        <ScrollView
+            style={styles.container}
+            contentContainerStyle={styles.contentContainer}>
+          <DateLabel
+              date={date}
+              onPress={() => {
+                this.props.navigator.push({
+                  component: DateSelector,
+                  passProps: {dispatch},
+                  title: 'date'
+              });
+            }}
+          />
+        </ScrollView>
     )
   }
 }
 
 Home.propTypes = {
-  initialCount: React.PropTypes.number
+  date: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  navigator: PropTypes.object.isRequired
 };
 
-Home.defaultProps = {
-  initialCount: 0
-};
+
+function mapStateToProps(state) {
+  return {
+    date: state.date
+  }
+}
+
+export default connect(mapStateToProps)(Home)

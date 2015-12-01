@@ -31,8 +31,7 @@ class App extends Component {
             style={{flex: 1}}
             initialRoute={{
                 component,
-                title,
-                rightButtonTitle: 'New Invite'
+                title
             }}
             tintColor={"#ea4c89"}
             titleTextColor={"#ea4c89"}
@@ -51,7 +50,7 @@ class App extends Component {
               selected={currentTab === 'home'}
               onPress={() => dispatch(setCurrentTab('home'))}>
 
-            {this.renderContent(Home, "Baby's Tasks")}
+            {this.renderContent(Home, "Home")}
 
           </TabBarIOS.Item>
 
@@ -60,7 +59,7 @@ class App extends Component {
               selected={currentTab === 'tasks'}
               onPress={() => dispatch(setCurrentTab('tasks'))}>
 
-            {this.renderContent(Tasks, "Baby's Tasks")}
+            {this.renderContent(Tasks, "Tasks")}
 
           </TabBarIOS.Item>
 
