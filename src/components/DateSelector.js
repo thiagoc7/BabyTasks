@@ -3,10 +3,11 @@ import React, {
     PropTypes,
     StyleSheet,
     DatePickerIOS,
-    TouchableHighlight,
     Text,
     View,
 } from 'react-native';
+
+import Button from './Button'
 
 import { setDate } from './../actions/actions'
 import { dateToString } from './../util/date'
@@ -31,7 +32,6 @@ export default class DateSelector extends Component {
   }
 
   selectNewDate() {
-    console.log(this.state.date)
     this.props.dispatch(
         setDate(
             dateToString(this.state.date)
@@ -50,9 +50,9 @@ export default class DateSelector extends Component {
               onDateChange={date => this.setState({date})}
           />
 
-          <TouchableHighlight style={{marginTop: 20}} onPress={this.selectNewDate.bind(this)}>
+          <Button style={{marginTop: 20}} onPress={this.selectNewDate.bind(this)} warning>
             <Text>Ok</Text>
-          </TouchableHighlight>
+          </Button>
         </View>
     )
   }

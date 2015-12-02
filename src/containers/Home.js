@@ -8,6 +8,7 @@ import React, {
 
 import { connect } from 'react-redux/native'
 
+import CurrentTasks from './CurrentTasks'
 import DateLabel from './../components/DateLabel'
 import DateSelector from './../components/DateSelector'
 
@@ -15,7 +16,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    marginTop: 40
+    marginTop: 40,
+    marginBottom: 40
   },
 
   contentContainer: {
@@ -27,21 +29,25 @@ const styles = StyleSheet.create({
 class Home extends Component {
 
   render() {
-    const { date, dispatch } = this.props;
+    const { date, currentTasks, ...others } = this.props;
     return (
         <ScrollView
             style={styles.container}
             contentContainerStyle={styles.contentContainer}>
+
           <DateLabel
               date={date}
               onPress={() => {
                 this.props.navigator.push({
                   component: DateSelector,
-                  passProps: {dispatch},
+                  passProps: {...others},
                   title: 'date'
               });
             }}
           />
+
+          <CurrentTasks currentTasks={currentTasks} {...others} />
+
         </ScrollView>
     )
   }
@@ -49,15 +55,15 @@ class Home extends Component {
 
 Home.propTypes = {
   date: PropTypes.string.isRequired,
+  currentTasks: PropTypes.array,
   dispatch: PropTypes.func.isRequired,
   navigator: PropTypes.object.isRequired
 };
 
 
-function mapStateToProps(state) {
+export default connect(state => {
   return {
-    date: state.date
+    date: state.date,
+    currentTasks: state.currentTasks
   }
-}
-
-export default connect(mapStateToProps)(Home)
+})(Home)

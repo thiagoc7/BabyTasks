@@ -3,9 +3,10 @@ import React, {
     Component,
     StyleSheet,
     Text,
-    TouchableHighlight,
     View,
 } from 'react-native';
+
+import Button from './Button';
 
 import { format } from './../util/date';
 
@@ -22,9 +23,9 @@ export default class DateSelector extends Component {
 
   render() {
     return (
-        <TouchableHighlight style={styles.container} onPress={this.props.onPress}>
+        <Button style={styles.container} onPress={this.props.onPress}>
           <Text>{format(this.props.date)}</Text>
-        </TouchableHighlight>
+        </Button>
     )
   }
 }
