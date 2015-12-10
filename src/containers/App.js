@@ -9,10 +9,12 @@ import React, {
 } from 'react-native';
 
 import { connect } from 'react-redux/native'
-import { setCurrentTab } from './actions/actions'
+import { setCurrentTab } from './../actions/actions'
 
-import Home from './containers/Home'
-import Tasks from './containers/Tasks'
+import Icon from 'react-native-vector-icons/Ionicons'
+
+import Home from './Home'
+import Tasks from './Tasks'
 
 const styles = StyleSheet.create({
   container: {
@@ -45,23 +47,27 @@ class App extends Component {
     return (
         <TabBarIOS tintColor={"#ea4c89"}>
 
-          <TabBarIOS.Item
-              systemIcon="history"
+          <Icon.TabBarItem
+              title="Home"
+              iconName="ios-home-outline"
+              selectedIconName="ios-home"
               selected={currentTab === 'home'}
               onPress={() => dispatch(setCurrentTab('home'))}>
 
             {this.renderContent(Home, "Home")}
 
-          </TabBarIOS.Item>
+          </Icon.TabBarItem>
 
-          <TabBarIOS.Item
-              systemIcon="more"
+          <Icon.TabBarItem
+              title="Tasks"
+              iconName="ios-checkmark-outline"
+              selectedIconName="ios-checkmark"
               selected={currentTab === 'tasks'}
               onPress={() => dispatch(setCurrentTab('tasks'))}>
 
             {this.renderContent(Tasks, "Tasks")}
 
-          </TabBarIOS.Item>
+          </Icon.TabBarItem>
 
         </TabBarIOS>
     )

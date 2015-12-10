@@ -8,7 +8,9 @@ import React, {
     View,
 } from 'react-native';
 
-import CurrentTask from './CurrentTask'
+import Check from './Types/Check'
+import Simple from './Types/Simple'
+import Timer from './Types/Timer'
 
 const styles = StyleSheet.create({
   container: {
@@ -26,12 +28,31 @@ const styles = StyleSheet.create({
 export default class CurrentTasks extends Component {
 
   render() {
-    const { currentTasks, ...others } = this.props;
     return (
         <View style={styles.container}>
-          {currentTasks.map(task => <CurrentTask key={task.id} task={task} {...others} />)}
+          {this.props.currentTasks.map(task => this.renderTask(task))}
         </View>
     )
+  }
+
+  renderTask(task) {
+    const Component = this.chooseComponent(task);
+    const { currentTasks, ...others } = this.props;
+
+    return <Component key={task.id} task={task} {...others} />
+  }
+
+  chooseComponent(task) {
+    switch (task.type) {
+      case 'timer':
+        return Timer;
+
+      case 'check':
+        return Check;
+
+      default:
+        return Simple;
+    }
   }
 }
 

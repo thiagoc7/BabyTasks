@@ -6,9 +6,9 @@ import React, {
     View,
 } from 'react-native';
 
-import Button from './Button';
+import Button from './../Elements/Button';
 
-import { format } from './../util/date';
+import { format } from './../../util/date';
 
 const styles = StyleSheet.create({
   container: {

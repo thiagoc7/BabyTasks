@@ -24,7 +24,7 @@ function date(state = today(), action) {
   }
 }
 
-const initialData = [
+const initialCurrentTasks = [
   {
     id: 1,
     type: 'simple',
@@ -64,31 +64,44 @@ const initialData = [
     name: 'Tomar Remédio 2',
     time: '18:00',
     done: false
-  },
-  {
-    id: 7,
-    type: 'timer',
-    name: 'Dormiu',
-    timeStart: '10:00',
-    timeEnd: '10:40'
-  },
-  {
-    id: 8,
-    type: 'timer',
-    name: 'Dormiu',
-    timeStart: '10:00',
-    timeEnd: '10:40'
-  },
-  {
-    id: 9,
-    type: 'timer',
-    name: 'Dormiu',
-    timeStart: '10:00',
-    timeEnd: '10:40'
   }
 ];
 
-function currentTasks(state = initialData, action) {
+function currentTasks(state = initialCurrentTasks, action) {
+  switch (action.type) {
+    //case SET_DATE:
+    //  return action.date;
+
+    default:
+      return state
+  }
+}
+
+
+const initialTasks = [
+  {
+    id: 1,
+    name: 'Acordou',
+    type: 'simple'
+  },
+  {
+    id: 2,
+    name: 'Dormiu',
+    type: 'timer'
+  },
+  {
+    id: 3,
+    name: 'Tomar Remédio',
+    type: 'check'
+  },
+  {
+    id: 3,
+    name: 'Tomar Remédio 2',
+    type: 'check'
+  }
+];
+
+function tasks(state = initialTasks, action) {
   switch (action.type) {
     //case SET_DATE:
     //  return action.date;
@@ -101,5 +114,6 @@ function currentTasks(state = initialData, action) {
 export default combineReducers({
   currentTab,
   date,
-  currentTasks
+  currentTasks,
+  tasks
 });

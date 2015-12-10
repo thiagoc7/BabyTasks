@@ -6,11 +6,12 @@ import React, {
     ScrollView,
 } from 'react-native';
 
-import { connect } from 'react-redux/native'
+import { connect } from 'react-redux/native';
+import Icon from 'react-native-vector-icons';
 
-import CurrentTasks from './CurrentTasks'
-import DateLabel from './../components/DateLabel'
-import DateSelector from './../components/DateSelector'
+import CurrentTasks from './../components/CurrentTasks/CurrentTasks'
+import DateLabel from './../components/Date/DateLabel'
+import DateSelector from './../components/Date/DateSelector'
 
 const styles = StyleSheet.create({
   container: {

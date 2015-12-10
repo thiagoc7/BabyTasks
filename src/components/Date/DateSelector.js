@@ -7,10 +7,10 @@ import React, {
     View,
 } from 'react-native';
 
-import Button from './Button'
+import Button from './../Elements/Button'
 
-import { setDate } from './../actions/actions'
-import { dateToString } from './../util/date'
+import { setDate } from './../../actions/actions'
+import { dateToString } from './../../util/date'
 
 const styles = StyleSheet.create({
   container: {
